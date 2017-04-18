@@ -1,0 +1,15 @@
+set < :main; [
+	
+	confirm {item<argument1>}
+	confirm {item<argument2>}
+	
+	set <:list; <1 2 3 4 5>>
+	
+	confirm list
+	af <list 6>
+	confirm list
+	rb list
+	confirm list
+	
+] >
+main <:Hello,; :world!;>
