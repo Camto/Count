@@ -62,6 +62,12 @@ function item(argument) {
 	
 }
 
+function say(argument) {
+	
+	confirm(argument);
+	
+}
+
 function debug(argument) {
 	
 	console.log(argument);
@@ -117,7 +123,6 @@ function Transpile(type, code) {
 		case "boolean":
 		case "name":
 		case "number":
-		case "operator":
 			
 			return code;
 		
@@ -209,6 +214,30 @@ function Transpile(type, code) {
 			list += "]";
 			
 			return list;
+		
+		
+		case "operator":
+			
+			switch(code) {
+				
+				case "+":
+				case "-":
+				case "*":
+				case "/":
+				case "<":
+				case ">":
+					
+					return code;
+				
+				case "=":
+					
+					return "==";
+				
+				case "!":
+					
+					return "!=";
+				
+			}
 		
 	}
 	
