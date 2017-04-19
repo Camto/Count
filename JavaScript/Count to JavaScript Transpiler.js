@@ -21,6 +21,15 @@ function Init() {
 	compile.innerHTML = "Compile!";
 	document.body.appendChild(compile);
 	
+	JavaScript_Code_Box = document.createElement("textarea");
+	JavaScript_Code_Box.setAttribute("cols", "96");
+	JavaScript_Code_Box.setAttribute("rows", "32");
+	JavaScript_Code_Box.setAttribute("placeholder", "JavaScript code goes here:");
+	JavaScript_Code_Box.style.resize = "none";
+	JavaScript_Code_Box.style.display = "block";
+	JavaScript_Code_Box.style.margin = "0 auto";
+	document.body.appendChild(JavaScript_Code_Box);
+	
 	compile.addEventListener("click", Compile);
 	
 }
@@ -33,13 +42,13 @@ function Compile() {
 	
 	var compiled = Count_Code.compile();
 	
-	eval(JS_Compile(compiled));
+	JavaScript_Code_Box.value = JS_Compile(compiled);
 	
 }
 
 function JS_Compile(code) {
 	
-	var Commands_Transpiled = "";
+	var Commands_Transpiled = "var _ = null\n";
 	
 	for(var count = 0; count < code.length; count++) {
 		
@@ -73,11 +82,11 @@ function Transpile(type, code) {
 				
 				case "if":
 					
-					return "if(" + Transpile(code[1][1][0][0], code[1][1][0][1]) + ") {" + Transpile(code[1][1][1][0], code[1][1][1][1]) + "()}";
+					return "if(" + Transpile(code[1][1][0][0], code[1][1][0][1]) + ") {" + Transpile(code[1][1][1][0], code[1][1][1][1]) + "(_)}";
 				
 				case "loop":
 					
-					return "while(" + Transpile(code[1][1][0][0], code[1][1][0][1]) + ") {" + Transpile(code[1][1][1][0], code[1][1][1][1]) + "()}";
+					return "while(" + Transpile(code[1][1][0][0], code[1][1][0][1]) + ") {" + Transpile(code[1][1][1][0], code[1][1][1][1]) + "(_)}";
 				
 				case "give":
 					
@@ -85,7 +94,7 @@ function Transpile(type, code) {
 				
 				case "item":
 					
-					return Transpile(code[1][1][0][0], code[1][1][0][1]) + "[" + (Transpile(code[1][1][1][0], code[1][1][1][1]) - 1) + "]";
+					return Transpile(code[1][1][0][0], code[1][1][0][1]) + "[(" + Transpile(code[1][1][1][0], code[1][1][1][1]) + ") - 1]";
 				
 				case "length":
 					
