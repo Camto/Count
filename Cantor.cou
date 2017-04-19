@@ -1,0 +1,62 @@
+set <cantors <>>
+
+set <cantor [
+	
+	declare return_me
+	set <return_me :# #;>
+	
+	if <(_ ! 1) [
+		
+		declare old_cantor
+		set <old_cantor {cantor (_ - 1)}>
+		
+		declare new_cantor
+		set <new_cantor :;>
+		
+		declare count
+		set <count 1>
+		loop <(count ! ({length old_cantor} + 1)) [
+			
+			if <({item <old_cantor count>} = :#;) [
+				
+				set <new_cantor (new_cantor + :# #;)>
+				
+			]>
+			
+			if <({item <old_cantor count>} = : ;) [
+				
+				set <new_cantor (new_cantor + :   ;)>
+				
+			]>
+			
+			set <count (count + 1)>
+			
+		]>
+		
+		set <return_me new_cantor>
+		
+	]>
+	
+	give return_me
+	
+]>
+
+set <count 1>
+loop <(count ! 6) [
+	
+	af <cantors {cantor count}>
+	set <count (count + 1)>
+	
+]>
+
+set <say_me :;>
+
+set <count 1>
+loop <(count ! 6) [
+	
+	set <say_me (say_me + {item <cantors count>})>
+	set <say_me (say_me + :\n\n;)>
+	set <count (count + 1)>
+	
+]>
+say say_me
