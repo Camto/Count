@@ -4,12 +4,13 @@ As of now, I've made a `Count` to `JavaScript` transpiler.
 
 Example:
 ```
-set < :main; [
+set < main [
 	
-	confirm {item<argument1>}
-	confirm {item<argument2>}
+	confirm {item<_1>}
+	confirm {item<_2>}
 	
-	set <:list; <1 2 3 4 5>>
+	declare list
+	set <list <1 2 3 4 5>>
 	
 	confirm list
 	af <list 6>
