@@ -48,7 +48,7 @@ function Compile() {
 
 function JS_Compile(code) {
 	
-	var Commands_Transpiled = "var _ = null\n";
+	var Commands_Transpiled = "";
 	
 	for(var count = 0; count < code.length; count++) {
 		
