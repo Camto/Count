@@ -213,7 +213,7 @@ class Count {
 				
 				var name = "";
 				
-				while(/[A-Za-z_]/.test(this.code[this.pointer])) {
+				while(/[A-Za-z_@]/.test(this.code[this.pointer])) {
 					
 					name += this.code[this.pointer];
 					
