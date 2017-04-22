@@ -48,7 +48,7 @@ function Compile() {
 
 function JS_Compile(code) {
 	
-	var Commands_Transpiled = "";
+	var Commands_Transpiled = "var _ = null;\n";
 	
 	for(var count = 0; count < code.length; count++) {
 		
@@ -131,10 +131,13 @@ function Transpile(type, code) {
 			}
 		
 		case "boolean":
-		case "name":
 		case "number":
 			
 			return code;
+		
+		case "name":
+			
+			return code.split("@").reverse().join(".");
 		
 		case "string":
 			
